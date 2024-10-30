@@ -120,11 +120,20 @@ def create_tables_and_insert_data():
  #                       estado_almacen INT
  #                   )''')  
 
-    # Lista de tipos de madera con su estado
+    cursor.execute('''CREATE TABLE IF NOT EXISTS Abastecimiento(
+                        idabastecimiento INT AUTO_INCREMENT PRIMARY KEY,
+                        idproveedor INT,
+                        idalmacen INT,
+                        idproducto INT,
+                        cantidad_abastecimiento INT UNSIGNED,
+                        fecha_abastecimiento DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        estado TINYINT,
+                        FOREIGN KEY (idproveedor) REFERENCES Proveedor(idproveedor),
+                        FOREIGN KEY (idalmacen) REFERENCES Almacen(idalmacen),
+                        FOREIGN KEY (idproducto) REFERENCES Producto(idproducto)
+                    )''')
     
-    
-    
-    
+    # Lista de tipos de madera con su estado 
     tipos_madera = [
         ('Madera Pino', 1),
         ('Madera Cedro', 1),
@@ -188,7 +197,14 @@ def create_tables_and_insert_data():
     conn.commit()
     conn.close()
     
-    # Llamar las funciones al inicio
+
+
+
+
+    #PAQUETES Y VERSIONES PARA SU FUNCIONAMIENTO
+    #pip install mysql-connector-python==9.0.0
+    #pip install mysqlclient==2.2.4
+
 if __name__ == "__main__":
     create_database()
     create_tables_and_insert_data()
