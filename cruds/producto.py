@@ -5,7 +5,7 @@ from models.producto import ProductoCreate
 from models.tipo import TipoCreate
 import mysql.connector
 import shutil  # Asegúrate de importar shutil
-from cruds import tipo
+from cruds import tipo,producto,abastecimiento
 from typing import Optional
 # Crear un nuevo producto
 def proceso_guardado(prod: ProductoCreate, file: Optional[UploadFile]):
@@ -112,6 +112,7 @@ def get_producto(idproducto: int):
         conn.close()
 
     return {"message": "Producto creado con éxito"}
+
 
 # Actualizar un producto por su ID (permitiendo cambiar de tipo)
 def update_producto(idprod: int, producto: ProductoCreate, file: Optional[UploadFile]):

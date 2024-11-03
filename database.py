@@ -110,16 +110,6 @@ def create_tables_and_insert_data():
                         FOREIGN KEY (idtipo) REFERENCES Tipo(idtipo)
                     )''')
     
-    # Crear tabla de Vehiculo
-
- #   cursor.execute('''CREATE TABLE IF NOT EXISTS Vehiculo (
- #                       idvehiculo INT AUTO_INCREMENT PRIMARY KEY,
- #                       nombre_almacen VARCHAR(200),
- #                       ubicacion_almacen VARCHAR(200),
- #                       descripcion_almacen VARCHAR(200),
- #                       estado_almacen INT
- #                   )''')  
-
     cursor.execute('''CREATE TABLE IF NOT EXISTS Abastecimiento(
                         idabastecimiento INT AUTO_INCREMENT PRIMARY KEY,
                         idproveedor INT,
@@ -131,7 +121,21 @@ def create_tables_and_insert_data():
                         FOREIGN KEY (idproveedor) REFERENCES Proveedor(idproveedor),
                         FOREIGN KEY (idalmacen) REFERENCES Almacen(idalmacen),
                         FOREIGN KEY (idproducto) REFERENCES Producto(idproducto)
-                    )''')
+                    )''')  
+
+
+    
+    # Crear tabla de Vehiculo
+
+ #   cursor.execute('''CREATE TABLE IF NOT EXISTS Vehiculo (
+ #                       idvehiculo INT AUTO_INCREMENT PRIMARY KEY,
+ #                       nombre_almacen VARCHAR(200),
+ #                       ubicacion_almacen VARCHAR(200),
+ #                       descripcion_almacen VARCHAR(200),
+ #                       estado_almacen INT
+ #                   )''')  
+
+
     
     # Lista de tipos de madera con su estado 
     tipos_madera = [

@@ -9,7 +9,8 @@ from models.almacen import AlmacenCreate
 from models.producto import ProductoCreate
 from models.tipo import TipoCreate
 from models.rol import RolCreate
-from cruds import usuario, rol,cliente,proveedor,almacen,producto,tipo
+from models.abastecimiento import AbastecimientoCreate
+from cruds import usuario, rol,cliente,proveedor,almacen,producto,tipo,abastecimiento
 from database import  create_database, create_tables_and_insert_data,create_connection
 
 #extra
@@ -318,14 +319,18 @@ def delete_tipo(idtipo: int):
 # ============================================
 # Abastecimiento
 # ============================================
+@app.get("/api/abastecimiento/")
+def list_Detalles():
+    return abastecimiento.read_abastecimiento()
 
+# crear producto
+@app.post("/api/abastecimiento/")
+def create_Abastecimiento(abas: AbastecimientoCreate):
+    return abastecimiento.create_abastecimiento(abas)
 
-
-
-
-
-
-
+@app.delete("/api/abastecimiento/{iddetalle}")
+def delete_detalle(iddetalle: int):
+    return abastecimiento.delete_detalle(iddetalle)
 
 
 # Listar todos los vehiculo
