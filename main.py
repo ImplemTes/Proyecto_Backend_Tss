@@ -332,6 +332,10 @@ def create_Abastecimiento(abas: AbastecimientoCreate):
 def delete_detalle(iddetalle: int):
     return abastecimiento.delete_detalle(iddetalle)
 
+@app.put("/api/abastecimiento/{iddetalle}")
+def update_detalle(iddetalle: int, abas: AbastecimientoCreate):
+    return abastecimiento.update_detalle(iddetalle,abas)
+
 
 # Listar todos los vehiculo
 #    @app.get("/api/vehiculo/")
