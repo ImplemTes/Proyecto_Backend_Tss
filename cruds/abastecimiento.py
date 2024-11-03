@@ -18,7 +18,7 @@ def create_abastecimiento(detalle: AbastecimientoCreate):
     stock_actualizado = productoDet['stock_producto'] + detalle.cantidad_abastecimiento
 
     # Genera la fecha actual en formato YYYY-MM-DD
-    fecha_abastecimiento = datetime.now().strftime("%Y-%m-%d")
+    fecha_abastecimiento = datetime.now()
 
     try:
 
@@ -121,12 +121,12 @@ def update_detalle(iddetalle: int, DetalleActualizado: AbastecimientoCreate):
                 "UPDATE Producto SET stock_producto = %s WHERE idproducto = %s", 
                 (stock_nuevo_actualizado, DetalleActualizado.idproducto)
             )
-
+        fecha_abastecimiento = datetime.now()
         # Actualiza el detalle
         cursor.execute(
-            '''UPDATE abastecimiento SET idproveedor = %s, idalmacen = %s, idproducto = %s, cantidad_abastecimiento = %s
+            '''UPDATE abastecimiento SET idproveedor = %s, idalmacen = %s, idproducto = %s, cantidad_abastecimiento = %s, fecha_abastecimiento = %s
                WHERE idabastecimiento = %s''',
-            (DetalleActualizado.idproveedor, DetalleActualizado.idalmacen, DetalleActualizado.idproducto, DetalleActualizado.cantidad_abastecimiento, iddetalle)
+            (DetalleActualizado.idproveedor, DetalleActualizado.idalmacen, DetalleActualizado.idproducto, DetalleActualizado.cantidad_abastecimiento,fecha_abastecimiento, iddetalle)
         )
         conn.commit()  
     except mysql.connector.Error as err:
