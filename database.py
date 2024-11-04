@@ -127,15 +127,17 @@ def create_tables_and_insert_data():
     
     # Crear tabla de Vehiculo
 
- #   cursor.execute('''CREATE TABLE IF NOT EXISTS Vehiculo (
- #                       idvehiculo INT AUTO_INCREMENT PRIMARY KEY,
- #                       nombre_almacen VARCHAR(200),
- #                       ubicacion_almacen VARCHAR(200),
- #                       descripcion_almacen VARCHAR(200),
- #                       estado_almacen INT
- #                   )''')  
+    cursor.execute('''CREATE TABLE IF NOT EXISTS Vehiculo(
+                        idvehiculo INT AUTO_INCREMENT PRIMARY KEY,
+                        placa VARCHAR(200),
+                        marca VARCHAR(200),
+                        modelo VARCHAR(200),
+                        color VARCHAR(200),
+                        fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        estado INT
+                   )''')  
 
-
+    # Crear tabla de detalle vehicular
     
     # Lista de tipos de madera con su estado 
     tipos_madera = [
