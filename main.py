@@ -7,10 +7,12 @@ from models.cliente import ClienteCreate
 from models.proveedor import ProveedorCreate
 from models.almacen import AlmacenCreate
 from models.producto import ProductoCreate
+
+from models.vehiculo import VehiculoCreate
 from models.tipo import TipoCreate
 from models.rol import RolCreate
 from models.abastecimiento import AbastecimientoCreate
-from cruds import usuario, rol,cliente,proveedor,almacen,producto,tipo,abastecimiento
+from cruds import usuario, rol,cliente,proveedor,almacen,producto,tipo,abastecimiento,vehiculo
 from database import  create_database, create_tables_and_insert_data,create_connection
 
 #extra
@@ -341,13 +343,25 @@ def update_detalle(iddetalle: int, abas: AbastecimientoCreate):
 # ============================================
 
 
+@app.get("/api/vehiculo/")
+def list_Vehiculos():
+    return vehiculo.read_vehiculos()
 
+@app.post("/api/vehiculo/")
+def create_Abastecimiento(auto: VehiculoCreate):
+    return vehiculo.create_vehiculo(auto)
 
+@app.delete("/api/vehiculo/{idvehiculo}")
+def delete_detalle(idvehiculo: int):
+    return vehiculo.delete_vehiculo(idvehiculo)
 
-# Listar todos los vehiculo
-#    @app.get("/api/vehiculo/")
-#    def listar_vehiculos():
-#        return almacen.read_vehiculos()
+@app.put("/api/vehiculo/{idvehiculo}")
+def update_detalle(idvehiculo: int, auto: VehiculoCreate):
+    return vehiculo.update_vehiculo(idvehiculo,auto)
+
+# ============================================
+# Programacion
+# ============================================
 
 
 
