@@ -5,4 +5,3 @@ class VehiculoCreate(BaseModel):
     marca: str
     modelo: str
     color: str
-    estado: bool

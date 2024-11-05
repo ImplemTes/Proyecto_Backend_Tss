@@ -13,7 +13,7 @@ def create_vehiculo(auto: VehiculoCreate):
     try:
         cursor.execute('''INSERT INTO vehiculo(placa, marca, modelo, color, fecha_registro, estado)
                           VALUES (%s, %s, %s, %s, %s, %s)''',
-                       (auto.placa, auto.marca, auto.modelo, auto.color, fecha_registro, auto.estado))
+                       (auto.placa, auto.marca, auto.modelo, auto.color, fecha_registro,1))
         conn.commit()
     except mysql.connector.Error as err:
         conn.rollback()
@@ -57,7 +57,7 @@ def update_vehiculo(idvehiculo: int, auto: VehiculoCreate):
     try:
         cursor.execute('''UPDATE vehiculo SET placa = %s, marca = %s, modelo = %s, color = %s, fecha_registro = %s, estado = %s
                           WHERE idvehiculo = %s''',
-                       (auto.placa, auto.marca, auto.modelo, auto.color, fecha_registro, auto.estado, idvehiculo))
+                       (auto.placa, auto.marca, auto.modelo, auto.color, fecha_registro, 1, idvehiculo))
         conn.commit()
     except mysql.connector.Error as err:
         conn.rollback()
@@ -85,3 +85,16 @@ def delete_vehiculo(idvehiculo: int):
         conn.close()
 
     return {"message": "El vehículo se eliminó con éxito"}
+
+
+def Extraer_Data(frame: str):
+    try:
+        ObtenerFrame = frame
+        # Aquí simplemente retornamos "*_*" como prueba.
+        plate = "mre"
+        return plate
+    except Exception as e:
+        # En caso de error, puedes imprimir el error o manejarlo según tus necesidades
+        print(f"Error procesando el frame: {e}")
+        # Puedes devolver un valor por defecto o una señal de error
+        return "No se detecto"

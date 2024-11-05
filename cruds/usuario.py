@@ -188,14 +188,3 @@ def login_users(email: str, password: str):
         cursor.close()  
         conn.close()
 
-def Extraer_Data(frame: str):
-    try:
-        ObtenerFrame = frame
-        # Aquí simplemente retornamos "*_*" como prueba.
-        plate = "mre"
-        return plate
-    except Exception as e:
-        # En caso de error, puedes imprimir el error o manejarlo según tus necesidades
-        print(f"Error procesando el frame: {e}")
-        # Puedes devolver un valor por defecto o una señal de error
-        return "No se detecto"

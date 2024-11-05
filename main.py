@@ -359,19 +359,21 @@ def delete_detalle(idvehiculo: int):
 def update_detalle(idvehiculo: int, auto: VehiculoCreate):
     return vehiculo.update_vehiculo(idvehiculo,auto)
 
-# ============================================
-# Programacion
-# ============================================
-
 
 
 #Para el modulo de vehiculo
 class ImagenCapturada(BaseModel):
     frame: str  # Se espera un string que representa el frame
-@app.post("/extract_plate/")
+@app.post("/api/vehiculo/objeto/")
 async def extraer_data(frame_data: ImagenCapturada):
-    return {"success": True, "plate": usuario.Extraer_Data(frame_data.frame)}
+    return {"success": True, "plate": vehiculo.Extraer_Data(frame_data.frame)}
 
+
+
+
+# ============================================
+# Programacion
+# ============================================
 
 if __name__ == "__main__":
     import uvicorn
