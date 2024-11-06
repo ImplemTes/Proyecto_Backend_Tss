@@ -360,17 +360,13 @@ def update_detalle(idvehiculo: int, auto: VehiculoCreate):
     return vehiculo.update_vehiculo(idvehiculo,auto)
 
 
-
-#Para el modulo de vehiculo
-class ImagenCapturada(BaseModel):
-    frame: str  # Se espera un string que representa el frame
 @app.post("/api/vehiculo/objeto/")
-async def extraer_data(frame_data: ImagenCapturada):
-    return {"success": True, "plate": vehiculo.Extraer_Data(frame_data.frame)}
+async def extraer_data(file: Optional[UploadFile] = File(None)):
+    # Llama al método que procesa el archivo y extrae el texto de la placa
+    placa = vehiculo.Extraer_Data(file)
+    return {"plate": placa}
 
-
-
-
+    
 # ============================================
 # Programacion
 # ============================================

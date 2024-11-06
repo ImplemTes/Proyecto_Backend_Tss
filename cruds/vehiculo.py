@@ -1,10 +1,10 @@
 import os
-from fastapi import HTTPException
+from fastapi import HTTPException,UploadFile,File
 from database import create_connection
 from models.vehiculo import VehiculoCreate
 import mysql.connector
 from datetime import datetime
-
+from typing import Optional
 def create_vehiculo(auto: VehiculoCreate):
     conn = create_connection()
     conn.database = os.getenv("DB_NAME")
@@ -87,14 +87,26 @@ def delete_vehiculo(idvehiculo: int):
     return {"message": "El vehículo se eliminó con éxito"}
 
 
-def Extraer_Data(frame: str):
+def Extraer_Data( file: Optional[UploadFile]):
     try:
-        ObtenerFrame = frame
-        # Aquí simplemente retornamos "*_*" como prueba.
-        plate = "mre"
-        return plate
+        print("LLegó el archivo correctamente al método Extraer_Data")
+       
+        # Procesa la imagen con OCR para obtener el texto de la placa
+        plate_text = "000-000-000 "
+        
+        # Aquí puedes limpiar o validar el texto detectado según tus necesidades
+        plate_text = plate_text.strip()  # Elimina espacios en blanco
+
+
+
+
+        # Devuelve la placa detectada
+        if not plate_text:
+            raise ValueError("No se pudo extraer la placa del archivo")
+        return plate_text
     except Exception as e:
-        # En caso de error, puedes imprimir el error o manejarlo según tus necesidades
-        print(f"Error procesando el frame: {e}")
-        # Puedes devolver un valor por defecto o una señal de error
-        return "No se detecto"
+        print(f"Error procesando el archivo en Extraer_Data: {e}")
+        raise HTTPException(status_code=500, detail="No se detectó el archivo")
+    
+
+
